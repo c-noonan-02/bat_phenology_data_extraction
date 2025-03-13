@@ -40,6 +40,14 @@ mariton_light_se <- sd(mariton_light_treatment$first_emergence_time) / sqrt(leng
 mariton_dark_se <- sd(mariton_dark_treatment$first_emergence_time) / sqrt(length(mariton_dark_treatment$first_emergence_time))
 
 
+#### Data from Lou et al. (2021) ####
+
+# save values extracted from LMM
+lou_LMM_t <- 3.66
+lou_LMM_estimate <- 5.33
+lou_se <- lou_LMM_estimate / lou_LMM_t
+lou_light_mean <- 14.32
+lou_dark_mean <- 14.41
 
 
 
@@ -48,9 +56,16 @@ mariton_dark_se <- sd(mariton_dark_treatment$first_emergence_time) / sqrt(length
 
 # generate dataframe to contain all of the extracted values from this paper
 bat_metaanalysis_data <- data.frame(paper_ID = rep(NA, 3), light_treatment_mean = rep(NA, 3), dark_treatment_mean = rep(NA, 3), light_se = rep(NA,3), dark_se = rep(NA, 3))
+# Mariton et al. (2022)
 bat_metaanalysis_data[1,1] <- "46VSSJ83"
 bat_metaanalysis_data[1,2] <- mariton_light_mean
 bat_metaanalysis_data[1,3] <- mariton_dark_mean
 bat_metaanalysis_data[1,4] <- mariton_light_se
 bat_metaanalysis_data[1,5] <- mariton_dark_se
+# Lou et al. (2021)
+bat_metaanalysis_data[2,1] <- "XLE9CETS"
+bat_metaanalysis_data[2,2] <- lou_light_mean
+bat_metaanalysis_data[2,3] <- lou_dark_mean
+bat_metaanalysis_data[2,4] <- lou_se
+bat_metaanalysis_data[2,5] <- lou_se
 View(bat_metaanalysis_data)
