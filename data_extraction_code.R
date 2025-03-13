@@ -50,6 +50,9 @@ lou_light_mean <- 14.32
 lou_dark_mean <- 14.41
 
 
+#### Data from Zou et al. (2024) ####
+
+# note - may need to dp using metafor - check github, if needed there is a session on Monday
 
 
 #### Meta Analysis Data ####
