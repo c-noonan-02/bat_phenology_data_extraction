@@ -52,7 +52,22 @@ lou_dark_mean <- 14.41
 
 #### Data from Zou et al. (2024) ####
 
-# note - may need to dp using metafor - check github, if needed there is a session on Monday
+zou_data <- read.csv("./data/zou_data_S5.csv")
+head(zou_data)
+
+# generate subset only including the data needed for the meta analysis
+zou_foraging_data <- subset(zou_data, select = c(treatment, bat_ID, time_foraging_onset))
+head(zou_foraging_data)
+
+# extract subsets of the data, including only each treatment group
+zou_light_treatment <- subset(zou_foraging_data, treatment == "white_light")
+zou_dark_treatment <- subset(zou_foraging_data, treatment == "dark_control")
+# calculate the mean time of first emergence for each treatment
+zou_light_mean <- mean(zou_light_treatment$time_foraging_onset)
+zou_dark_mean <- mean(zou_dark_treatment$time_foraging_onset)
+# calculate the se of first emergence for each treatment
+zou_light_se <- sd(zou_light_treatment$time_foraging_onset) / sqrt(length(zou_light_treatment$time_foraging_onset))
+zou_dark_se <- sd(zou_dark_treatment$time_foraging_onset) / sqrt(length(zou_dark_treatment$time_foraging_onset))
 
 
 #### Meta Analysis Data ####
@@ -71,4 +86,12 @@ bat_metaanalysis_data[2,2] <- lou_light_mean
 bat_metaanalysis_data[2,3] <- lou_dark_mean
 bat_metaanalysis_data[2,4] <- lou_se
 bat_metaanalysis_data[2,5] <- lou_se
+# Zou et al. (2024)
+bat_metaanalysis_data[3,1] <- "JTRLFNEZ"
+bat_metaanalysis_data[3,2] <- zou_light_mean
+bat_metaanalysis_data[3,3] <- zou_dark_mean
+bat_metaanalysis_data[3,4] <- zou_light_se
+bat_metaanalysis_data[3,5] <- zou_dark_se
 View(bat_metaanalysis_data)
+
+# Note - now need to convert all units to the same!
