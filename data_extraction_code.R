@@ -25,7 +25,7 @@ max(mariton_emergence_data$radiance_mean)
 
 # add another column to separate dataset into treatment groups
 mariton_emergence_data <- mariton_emergence_data %>%
-  mutate(treatment = ifelse(radiance_mean > 5, "light_treatment", "dark_treatment"))
+  mutate(treatment = ifelse(radiance_mean > 3, "light_treatment", "dark_treatment"))
 head(mariton_emergence_data)
 
 sum(mariton_emergence_data$treatment == "light_treatment")
@@ -41,21 +41,27 @@ mariton_dark_mean <- mean(mariton_dark_treatment$first_emergence_time)
 mariton_light_se <- sd(mariton_light_treatment$first_emergence_time) / sqrt(length(mariton_light_treatment$first_emergence_time))
 mariton_dark_se <- sd(mariton_dark_treatment$first_emergence_time) / sqrt(length(mariton_dark_treatment$first_emergence_time))
 
+# convert units from seconds to minutes, to match the other studies
+mariton_light_mean <- mariton_light_mean/60
+mariton_dark_mean <- mariton_dark_mean/60
+mariton_light_se <- mariton_light_se/60
+mariton_dark_se <- mariton_dark_se/60
+
 
 #### Data from Lou et al. (2021) ####
 
 # load shinydigitise, extract data
-lou_data <- shinyDigitise(dir = normalizePath("./figures"))
+#lou_data <- shinyDigitise(dir = normalizePath("./figures"))
 
-# open data extracted uaing shinydigitise
+# open data extracted using shinydigitise
 lou_metadigitise <- read.csv("./figures/ExtractedData.csv")
 View(lou_metadigitise)
 
 # extract needed values from this dataset
-lou_light_mean <- lou_metadigitise[1,5]
-lou_dark_mean <- lou_metadigitise[2,5]
-lou_light_se <- lou_metadigitise[1,9]
-lou_dark_se <- lou_metadigitise[2,9]
+lou_light_mean <- lou_metadigitise[2,5]
+lou_dark_mean <- lou_metadigitise[1,5]
+lou_light_se <- lou_metadigitise[2,9]
+lou_dark_se <- lou_metadigitise[1,9]
 
 
 #### Data from Zou et al. (2024) ####
@@ -102,5 +108,4 @@ bat_metaanalysis_data[3,4] <- zou_light_se
 bat_metaanalysis_data[3,5] <- zou_dark_se
 View(bat_metaanalysis_data)
 
-# Note - now need to convert all units to the same!
 # Then extract data into the final meta-analysis table!
