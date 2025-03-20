@@ -2,7 +2,9 @@
 rm(list = ls())
 
 # import required packages
+devtools::install_github("EIvimeyCook/ShinyDigitise")
 library(dplyr)
+library(shinyDigitise)
 
 
 #### Data from Mariton et al. (2022) ####
@@ -42,12 +44,18 @@ mariton_dark_se <- sd(mariton_dark_treatment$first_emergence_time) / sqrt(length
 
 #### Data from Lou et al. (2021) ####
 
-# save values extracted from LMM
-lou_LMM_t <- 3.66
-lou_LMM_estimate <- 5.33
-lou_se <- lou_LMM_estimate / lou_LMM_t
-lou_light_mean <- 14.32
-lou_dark_mean <- 14.41
+# load shinydigitise, extract data
+lou_data <- shinyDigitise(dir = normalizePath("./figures"))
+
+# open data extracted uaing shinydigitise
+lou_metadigitise <- read.csv("./figures/ExtractedData.csv")
+View(lou_metadigitise)
+
+# extract needed values from this dataset
+lou_light_mean <- lou_metadigitise[1,5]
+lou_dark_mean <- lou_metadigitise[2,5]
+lou_light_se <- lou_metadigitise[1,9]
+lou_dark_se <- lou_metadigitise[2,9]
 
 
 #### Data from Zou et al. (2024) ####
@@ -84,8 +92,8 @@ bat_metaanalysis_data[1,5] <- mariton_dark_se
 bat_metaanalysis_data[2,1] <- "XLE9CETS"
 bat_metaanalysis_data[2,2] <- lou_light_mean
 bat_metaanalysis_data[2,3] <- lou_dark_mean
-bat_metaanalysis_data[2,4] <- lou_se
-bat_metaanalysis_data[2,5] <- lou_se
+bat_metaanalysis_data[2,4] <- lou_light_se
+bat_metaanalysis_data[2,5] <- lou_dark_se
 # Zou et al. (2024)
 bat_metaanalysis_data[3,1] <- "JTRLFNEZ"
 bat_metaanalysis_data[3,2] <- zou_light_mean
@@ -95,3 +103,4 @@ bat_metaanalysis_data[3,5] <- zou_dark_se
 View(bat_metaanalysis_data)
 
 # Note - now need to convert all units to the same!
+# Then extract data into the final meta-analysis table!

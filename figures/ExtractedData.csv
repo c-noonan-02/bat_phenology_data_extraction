@@ -1,0 +1,3 @@
+"","filename","variable","group_id","mean","sd","n","r","se","error_type","plot_type"
+"1","lou_et_al_2021_fig3.png","Minutes after sunset (min)","Dark",14.2568993344802,7.53268117470641,10,NA,2.3820429399945,"sd","boxplot"
+"2","lou_et_al_2021_fig3.png","Minutes after sunset (min)","Light",28.9767974105969,8.18496039818971,10,NA,2.58831174165582,"sd","boxplot"
