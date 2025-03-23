@@ -2,7 +2,7 @@
 rm(list = ls())
 
 # import required packages
-devtools::install_github("EIvimeyCook/ShinyDigitise")
+#devtools::install_github("EIvimeyCook/ShinyDigitise")
 library(dplyr)
 library(shinyDigitise)
 
@@ -54,7 +54,8 @@ mariton_dark_se <- mariton_dark_se/60
 #lou_data <- shinyDigitise(dir = normalizePath("./figures"))
 
 # open data extracted using shinydigitise
-lou_metadigitise <- read.csv("./figures/ExtractedData.csv")
+metadigitise_output <- read.csv("./figures/ExtractedData.csv")
+lou_metadigitise <- metadigitise_output[1:2, ]
 View(lou_metadigitise)
 
 # extract needed values from this dataset
@@ -84,10 +85,27 @@ zou_light_se <- sd(zou_light_treatment$time_foraging_onset) / sqrt(length(zou_li
 zou_dark_se <- sd(zou_dark_treatment$time_foraging_onset) / sqrt(length(zou_dark_treatment$time_foraging_onset))
 
 
+#### Data from Stone et al. (2009) ####
+
+# load shinydigitise, extract data
+# stone_data <- shinyDigitise(dir = normalizePath("./figures"))
+
+# open data extracted using shinydigitise
+metadigitise_output <- read.csv("./figures/ExtractedData.csv")
+stone_metadigitise <- metadigitise_output[3:4, ]
+View(stone_metadigitise)
+
+# extract needed values from this dataset
+stone_light_mean <- stone_metadigitise[2,5]
+stone_dark_mean <- stone_metadigitise[1,5]
+stone_light_se <- stone_metadigitise[2,9]
+stone_dark_se <- stone_metadigitise[1,9]
+
+
 #### Meta Analysis Data ####
 
 # generate dataframe to contain all of the extracted values from this paper
-bat_metaanalysis_data <- data.frame(paper_ID = rep(NA, 3), light_treatment_mean = rep(NA, 3), dark_treatment_mean = rep(NA, 3), light_se = rep(NA,3), dark_se = rep(NA, 3))
+bat_metaanalysis_data <- data.frame(paper_ID = rep(NA, 4), light_treatment_mean = rep(NA, 4), dark_treatment_mean = rep(NA, 4), light_se = rep(NA,4), dark_se = rep(NA, 4))
 # Mariton et al. (2022)
 bat_metaanalysis_data[1,1] <- "46VSSJ83"
 bat_metaanalysis_data[1,2] <- mariton_light_mean
@@ -107,5 +125,16 @@ bat_metaanalysis_data[3,3] <- zou_dark_mean
 bat_metaanalysis_data[3,4] <- zou_light_se
 bat_metaanalysis_data[3,5] <- zou_dark_se
 View(bat_metaanalysis_data)
+# Stone et al. (2009)
+bat_metaanalysis_data[4,1] <- "6IHYJZ5N"
+bat_metaanalysis_data[4,2] <- stone_light_mean
+bat_metaanalysis_data[4,3] <- stone_dark_mean
+bat_metaanalysis_data[4,4] <- stone_light_se
+bat_metaanalysis_data[4,5] <- stone_dark_se
+View(bat_metaanalysis_data)
 
 # Then extract data into the final meta-analysis table!
+write.csv(bat_metaanalysis_data, "./data/meta_analysis_data.csv", row.names = FALSE)
+
+# Left to do:
+# Check difference between Mariton 01 and 05!
