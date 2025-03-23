@@ -10,7 +10,7 @@ library(shinyDigitise)
 #### Data from Mariton et al. (2022) ####
 
 # import dataset
-mariton_data <- read.csv("./data/mariton_data_01.csv")
+mariton_data <- read.csv("./data/mariton_data_05.csv") # I used 0.5 MERT, as they proved results were consistent with 0.1 tolerance
 head(mariton_data)
 
 # extract relevant data for a new dataframe, to store the values needed to calculate the means for each treatment 
@@ -135,6 +135,3 @@ View(bat_metaanalysis_data)
 
 # Then extract data into the final meta-analysis table!
 write.csv(bat_metaanalysis_data, "./data/meta_analysis_data.csv", row.names = FALSE)
-
-# Left to do:
-# Check difference between Mariton 01 and 05!
