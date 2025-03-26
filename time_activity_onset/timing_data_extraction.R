@@ -10,7 +10,7 @@ library(shinyDigitise)
 #### Data from Mariton et al. (2022) ####
 
 # import dataset
-mariton_data <- read.csv("./data/mariton_data_05.csv") # I used 0.5 MERT, as they proved results were consistent with 0.1 tolerance
+mariton_data <- read.csv("./time_activity_onset/data/mariton_data_05.csv") # I used 0.5 MERT, as they proved results were consistent with 0.1 tolerance
 head(mariton_data)
 
 # extract relevant data for a new dataframe, to store the values needed to calculate the means for each treatment 
@@ -51,10 +51,10 @@ mariton_dark_se <- mariton_dark_se/60
 #### Data from Lou et al. (2021) ####
 
 # load shinydigitise, extract data
-#lou_data <- shinyDigitise(dir = normalizePath("./figures"))
+#lou_data <- shinyDigitise(dir = normalizePath("./time_activity_onset/figures"))
 
 # open data extracted using shinydigitise
-metadigitise_output <- read.csv("./figures/ExtractedData.csv")
+metadigitise_output <- read.csv("./time_activity_onset/figures/ExtractedData.csv")
 lou_metadigitise <- metadigitise_output[1:2, ]
 View(lou_metadigitise)
 
@@ -67,7 +67,7 @@ lou_dark_se <- lou_metadigitise[1,9]
 
 #### Data from Zou et al. (2024) ####
 
-zou_data <- read.csv("./data/zou_data_S5.csv")
+zou_data <- read.csv("./time_activity_onset/data/zou_data_S5.csv")
 head(zou_data)
 
 # generate subset only including the data needed for the meta analysis
@@ -88,10 +88,10 @@ zou_dark_se <- sd(zou_dark_treatment$time_foraging_onset) / sqrt(length(zou_dark
 #### Data from Stone et al. (2009) ####
 
 # load shinydigitise, extract data
-# stone_data <- shinyDigitise(dir = normalizePath("./figures"))
+# stone_data <- shinyDigitise(dir = normalizePath("./time_activity_onset/figures"))
 
 # open data extracted using shinydigitise
-metadigitise_output <- read.csv("./figures/ExtractedData.csv")
+metadigitise_output <- read.csv("./time_activity_onset/figures/ExtractedData.csv")
 stone_metadigitise <- metadigitise_output[3:4, ]
 View(stone_metadigitise)
 
@@ -134,4 +134,4 @@ bat_metaanalysis_data[4,5] <- stone_dark_se
 View(bat_metaanalysis_data)
 
 # Then extract data into the final meta-analysis table!
-write.csv(bat_metaanalysis_data, "./data/meta_analysis_data.csv", row.names = FALSE)
+write.csv(bat_metaanalysis_data, "./time_activity_onset/data/meta_analysis_data.csv", row.names = FALSE)
