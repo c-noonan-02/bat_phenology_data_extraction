@@ -88,7 +88,7 @@ zou_dark_se <- sd(zou_dark_treatment$time_foraging_onset) / sqrt(length(zou_dark
 #### Data from Stone et al. (2009) ####
 
 # load shinydigitise, extract data
-# stone_data <- shinyDigitise(dir = normalizePath("./time_activity_onset/figures"))
+#stone_data <- shinyDigitise(dir = normalizePath("./time_activity_onset/figures"))
 
 # open data extracted using shinydigitise
 metadigitise_output <- read.csv("./time_activity_onset/figures/ExtractedData.csv")
