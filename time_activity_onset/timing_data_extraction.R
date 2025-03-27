@@ -96,10 +96,10 @@ stone_metadigitise <- metadigitise_output[3:4, ]
 View(stone_metadigitise)
 
 # extract needed values from this dataset
-stone_light_mean <- stone_metadigitise[2,5]
-stone_dark_mean <- stone_metadigitise[1,5]
-stone_light_se <- stone_metadigitise[2,9]
-stone_dark_se <- stone_metadigitise[1,9]
+stone_light_mean <- stone_metadigitise[1,5]
+stone_dark_mean <- stone_metadigitise[2,5]
+stone_light_se <- stone_metadigitise[1,9]
+stone_dark_se <- stone_metadigitise[2,9]
 
 
 #### Meta Analysis Data ####
@@ -124,7 +124,6 @@ bat_metaanalysis_data[3,2] <- zou_light_mean
 bat_metaanalysis_data[3,3] <- zou_dark_mean
 bat_metaanalysis_data[3,4] <- zou_light_se
 bat_metaanalysis_data[3,5] <- zou_dark_se
-View(bat_metaanalysis_data)
 # Stone et al. (2009)
 bat_metaanalysis_data[4,1] <- "6IHYJZ5N"
 bat_metaanalysis_data[4,2] <- stone_light_mean
