@@ -22,6 +22,8 @@ lou_light_mean <- lou_metadigitise[2,5]
 lou_dark_mean <- lou_metadigitise[1,5]
 lou_light_se <- lou_metadigitise[2,9]
 lou_dark_se <- lou_metadigitise[1,9]
+lou_light_n <- lou_metadigitise[2,7]
+lou_dark_n <- lou_metadigitise[1,7]
 
 
 #### Data from Zou et al. (2024) ####
@@ -42,6 +44,9 @@ zou_dark_mean <- mean(zou_dark_treatment$time_foraging_onset)
 # calculate the se of first emergence for each treatment
 zou_light_se <- sd(zou_light_treatment$time_foraging_onset) / sqrt(length(zou_light_treatment$time_foraging_onset))
 zou_dark_se <- sd(zou_dark_treatment$time_foraging_onset) / sqrt(length(zou_dark_treatment$time_foraging_onset))
+# calculate the sample size for each treatment
+zou_light_n <- sum(zou_foraging_data$treatment == "white_light")
+zou_dark_n <- sum(zou_foraging_data$treatment == "dark_control")
 
 
 #### Data from Stone et al. (2009) ####
@@ -59,30 +64,38 @@ stone_light_mean <- stone_metadigitise[1,5]
 stone_dark_mean <- stone_metadigitise[2,5]
 stone_light_se <- stone_metadigitise[1,9]
 stone_dark_se <- stone_metadigitise[2,9]
+stone_light_n <- stone_metadigitise[2,7]
+stone_dark_n <- stone_metadigitise[1,7]
 
 
 #### Meta Analysis Data ####
 
 # generate dataframe to contain all of the extracted values from this paper
-bat_metaanalysis_data <- data.frame(paper_ID = rep(NA, 3), light_treatment_mean = rep(NA, 3), dark_treatment_mean = rep(NA, 3), light_se = rep(NA, 3), dark_se = rep(NA, 3))
+bat_metaanalysis_data <- data.frame(paper_ID = rep(NA, 3), light_treatment_mean = rep(NA, 3), dark_treatment_mean = rep(NA, 3), light_se = rep(NA, 3), dark_se = rep(NA, 3), light_n = rep(NA, 3), dark_n = rep(NA, 3))
 # Lou et al. (2021)
 bat_metaanalysis_data[1,1] <- "XLE9CETS"
 bat_metaanalysis_data[1,2] <- lou_light_mean
 bat_metaanalysis_data[1,3] <- lou_dark_mean
 bat_metaanalysis_data[1,4] <- lou_light_se
 bat_metaanalysis_data[1,5] <- lou_dark_se
+bat_metaanalysis_data[1,6] <- lou_light_n
+bat_metaanalysis_data[1,7] <- lou_dark_n
 # Zou et al. (2024)
 bat_metaanalysis_data[2,1] <- "JTRLFNEZ"
 bat_metaanalysis_data[2,2] <- zou_light_mean
 bat_metaanalysis_data[2,3] <- zou_dark_mean
 bat_metaanalysis_data[2,4] <- zou_light_se
 bat_metaanalysis_data[2,5] <- zou_dark_se
+bat_metaanalysis_data[2,6] <- zou_light_n
+bat_metaanalysis_data[2,7] <- zou_dark_n
 # Stone et al. (2009)
 bat_metaanalysis_data[3,1] <- "6IHYJZ5N"
 bat_metaanalysis_data[3,2] <- stone_light_mean
 bat_metaanalysis_data[3,3] <- stone_dark_mean
 bat_metaanalysis_data[3,4] <- stone_light_se
 bat_metaanalysis_data[3,5] <- stone_dark_se
+bat_metaanalysis_data[3,6] <- stone_light_n
+bat_metaanalysis_data[3,7] <- stone_dark_n
 View(bat_metaanalysis_data)
 
 # Then extract data into the final meta-analysis table!
