@@ -328,25 +328,31 @@ write.csv(bat_passes_data, "./activity_levels/data/bat_passes_data.csv", row.nam
 ##### Compilation of overall data #####
 
 # generate dataframe to contain all of the extracted values from this paper
-all_bat_passes_data <- data.frame(paper_ID = rep(NA, 3), light_treatment_mean = rep(NA, 3), dark_treatment_mean = rep(NA, 3), light_se = rep(NA,3), dark_se = rep(NA, 3))
+all_bat_passes_data <- data.frame(paper_ID = rep(NA, 3), light_treatment_mean = rep(NA, 3), dark_treatment_mean = rep(NA, 3), light_se = rep(NA,3), dark_se = rep(NA, 3), light_n = rep(NA,3), dark_n = rep(NA, 3))
 # Lou et al. (2012)
 all_bat_passes_data[1,1] <- "XLE9CETS"
 all_bat_passes_data[1,2] <- lou_light_mean
 all_bat_passes_data[1,3] <- lou_dark_mean
 all_bat_passes_data[1,4] <- lou_light_se
 all_bat_passes_data[1,5] <- lou_dark_se
+all_bat_passes_data[1,6] <- lou_light_n
+all_bat_passes_data[1,7] <- lou_dark_n
 # Froidevaux et al. (2018)
 all_bat_passes_data[2,1] <- "HYJXU4SH"
 all_bat_passes_data[2,2] <- froidevaux_light_mean
 all_bat_passes_data[2,3] <- froidevaux_dark_mean
 all_bat_passes_data[2,4] <- froidevaux_light_se
 all_bat_passes_data[2,5] <- froidevaux_dark_se
+all_bat_passes_data[2,6] <- froidevaux_light_n
+all_bat_passes_data[2,7] <- froidevaux_dark_n
 # Haddock et al. (2019)
 all_bat_passes_data[3,1] <- "66FLKFKZ"
 all_bat_passes_data[3,2] <- haddock_light_mean
 all_bat_passes_data[3,3] <- haddock_dark_mean
 all_bat_passes_data[3,4] <- haddock_light_se
 all_bat_passes_data[3,5] <- haddock_dark_se
+all_bat_passes_data[3,6] <- haddock_light_n
+all_bat_passes_data[3,7] <- haddock_dark_n
 # View final data set
 View(all_bat_passes_data)
 # Then save data to files
